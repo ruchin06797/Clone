@@ -1,0 +1,63 @@
+/* Netflix-like styling */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #141414;
+  color: white;
+  margin: 0;
+}
+
+.logo {
+  height: 40px;
+}
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+              url('assets/hero-background.jpg');
+  height: 70vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+
+.movies-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.movie {
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.movie:hover {
+  transform: scale(1.1);
+}
+
+.movie img {
+  width: 220px;
+  border-radius: 4px;
+}
+
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.video-modal video {
+  width: 80%;
+  max-width: 1000px;
+}
+
+.hidden {
+  display: none;
+}
