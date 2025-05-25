@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Clone</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <img src="assets/netflix-logo.png" alt="Netflix Logo" class="logo">
+      <!-- No admin link here -->
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Unlimited movies, TV shows, and more.</h1>
+      </div>
+    </section>
+
+    <section class="categories">
+      <!-- Dynamically populated by JavaScript -->
+    </section>
+  </main>
+
+  <div class="video-modal hidden">
+    <span class="close-modal">&times;</span>
+    <video controls autoplay id="modal-video">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script src="js/db.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
