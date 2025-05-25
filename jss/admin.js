@@ -1,40 +1,41 @@
-console.log("Admin script loaded");
+const ADMIN_TOKEN = 'your-secure-token'; // Set in wrangler.toml
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log("DOM fully loaded");
+async function loadContent() {
+  const response = await fetch('/api/content');
+  return await response.json();
+}
+
+async function saveContent(content) {
+  await fetch('/api/content', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${ADMIN_TOKEN}`
+    },
+    body: JSON.stringify(content)
+  });
+}
+
+// Render editable content
+function renderEditor(content) {
+  const editor = document.getElementById('content-editor');
+  editor.innerHTML = `
+    <textarea id="content-json">${JSON.stringify(content, null, 2)}</textarea>
+  `;
+}
+
+// Initialize admin panel
+document.addEventListener('DOMContentLoaded', async () => {
+  const content = await loadContent();
+  renderEditor(content);
   
-  const loginScreen = document.getElementById('login-screen');
-  const adminPanel = document.getElementById('admin-panel');
-  const loginBtn = document.getElementById('login-btn');
-  const passwordInput = document.getElementById('admin-password');
-  const errorMsg = document.getElementById('login-error');
-
-  if (!loginBtn || !passwordInput) {
-    console.error("Essential elements missing!");
-    return;
-  }
-
-  console.log("All elements found");
-
-  loginBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log("Login attempt with password:", passwordInput.value);
-    
-    if (passwordInput.value === DB.ADMIN_PASSWORD) {
-      console.log("Password correct");
-      loginScreen.style.display = 'none';
-      adminPanel.classList.remove('hidden');
-      initAdminPanel();
-    } else {
-      console.log("Password incorrect");
-      errorMsg.textContent = "Incorrect password!";
-      passwordInput.value = '';
-      passwordInput.focus();
+  document.getElementById('save-btn').addEventListener('click', async () => {
+    try {
+      const newContent = JSON.parse(document.getElementById('content-json').value);
+      await saveContent(newContent);
+      alert('Changes saved successfully!');
+    } catch (err) {
+      alert('Error saving: ' + err.message);
     }
   });
-
-  function initAdminPanel() {
-    console.log("Initializing admin panel");
-    // ... rest of your admin panel code
-  }
 });
