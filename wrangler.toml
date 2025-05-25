@@ -1,0 +1,14 @@
+name = "netflix-clone"
+main = "worker/api.js"
+compatibility_date = "2023-08-15"
+
+kv_namespaces = [
+  { binding = "CONTENT_KV", id = "CONTENT_KV" }
+]
+
+[env]
+ADMIN_TOKEN = "Admin"
+
+[site]
+bucket = "./public"
+entry-point = "./worker"
