@@ -1,5 +1,5 @@
 const DB = {
-  // Hardcoded password (for demo only - not secure for production)
+  // Hardcoded password (change this in production!)
   ADMIN_PASSWORD: "netflixadmin123",
   
   movies: JSON.parse(localStorage.getItem('movies')) || [
